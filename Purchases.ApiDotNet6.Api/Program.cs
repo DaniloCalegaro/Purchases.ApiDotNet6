@@ -1,3 +1,5 @@
+using Purchases.ApiDotNet6.Infra.IoC;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddInfrastructure(builder.Configuration); // registrar infra estrutura
+builder.Services.AddServices(builder.Configuration); // registrar serviços
 
 var app = builder.Build();
 

@@ -9,29 +9,29 @@ using System.Threading.Tasks;
 
 namespace Purchases.ApiDotNet6.Infra.Data.Maps
 {
-    public class PersonMap : IEntityTypeConfiguration<Person>
+    public class ProductMap : IEntityTypeConfiguration<Product>
     {
-        public void Configure(EntityTypeBuilder<Person> builder)
+        public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.ToTable("pessoa");
+            builder.ToTable("produto");
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Id)
-                .HasColumnName("idpessoa")
+                .HasColumnName("idproduto")
                 .UseIdentityColumn();
 
             builder.Property(c => c.Name)
                 .HasColumnName("nome");
 
-            builder.Property(c => c.Document)
-                .HasColumnName("documento");
+            builder.Property(c => c.CodErp)
+                .HasColumnName("coderp");
 
-            builder.Property(c => c.Phone)
-                .HasColumnName("celular");
+            builder.Property(c => c.Price)
+                .HasColumnName("preco");
 
             builder.HasMany(c => c.Purchases)
-                .WithOne(p => p.Person)
-                .HasForeignKey(c => c.PersonId);
+                .WithOne(p => p.Product)
+                .HasForeignKey(c => c.ProductId);
         }
     }
 }

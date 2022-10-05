@@ -14,13 +14,13 @@ namespace Purchases.ApiDotNet6.Domain.Entities
         public string Name { get; private set; }
         public string Document { get; private set; }
         public string Phone { get; private set; }
-
         public ICollection<Purchase> Purchases { get; set; }
 
         // construtor adição
         public Person(string name, string document, string phone)
         {
             Validation(name, document, phone);  
+            Purchases = new List<Purchase>();
         }
 
         //construtor edição
@@ -29,6 +29,8 @@ namespace Purchases.ApiDotNet6.Domain.Entities
             DomainValidationException.When(id < 0, "Id inválido");
             Id = id;
             Validation(name, document, phone);
+            Purchases = new List<Purchase>();
+
         }
 
         private void Validation(string name, string document, string phone)

@@ -8,17 +8,19 @@ using System.Threading.Tasks;
 
 namespace Purchases.ApiDotNet6.Infra.Data.Context
 {
-    public class PuchaseDbContext : DbContext
+    public class PurchaseDbContext : DbContext
     {
-        public PuchaseDbContext(DbContextOptions<PuchaseDbContext> options) : base(options)
+        public PurchaseDbContext(DbContextOptions<PurchaseDbContext> options) : base(options)
         {}
 
         public DbSet<Person> People { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PuchaseDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PurchaseDbContext).Assembly);
         }
     }
 }

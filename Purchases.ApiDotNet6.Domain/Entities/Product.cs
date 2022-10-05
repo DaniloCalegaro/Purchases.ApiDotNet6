@@ -20,6 +20,7 @@ namespace Purchases.ApiDotNet6.Domain.Entities
         public Product(string name, string codErp, decimal price)
         {
             Validation(name, codErp, price);
+            Purchases = new List<Purchase>();
         }
 
         //construtor edição
@@ -28,6 +29,7 @@ namespace Purchases.ApiDotNet6.Domain.Entities
             DomainValidationException.When(price < 0, "Id deve ser valido");
             Id = id;
             Validation(name, codErp, price);
+            Purchases = new List<Purchase>();
         }
 
         private void Validation(string name, string codErp, decimal price)
