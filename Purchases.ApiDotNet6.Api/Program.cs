@@ -1,4 +1,5 @@
 using Purchases.ApiDotNet6.Infra.IoC;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddInfrastructure(builder.Configuration); // registrar infra estrutura
 builder.Services.AddServices(builder.Configuration); // registrar serviços
+builder.Services.AddMvc().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull; // remove repostas null da api
+});
 
 var app = builder.Build();
 

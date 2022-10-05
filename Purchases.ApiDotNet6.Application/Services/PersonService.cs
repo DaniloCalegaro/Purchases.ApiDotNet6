@@ -37,5 +37,20 @@ namespace Purchases.ApiDotNet6.Application.Services
 
             return ResultService.Ok<PersonDTO>(_mapper.Map<PersonDTO>(data));   
         }
+
+        public async Task<ResultServices<ICollection<PersonDTO>>> GetAsync()
+        {
+            var people = await _personRepository.GetPeopleAsync();
+            return ResultService.Ok<ICollection<PersonDTO>>(_mapper.Map<ICollection<PersonDTO>>(people));
+        }
+
+        public async Task<ResultServices<PersonDTO>> GetByIdAsync(int id)
+        {
+            var person = await _personRepository.GetByIdAsync(id);
+            if (person == null)
+                return ResultService.Fail<PersonDTO>("Pessoas não encontrada");
+
+            return ResultService.Ok(_mapper.Map<PersonDTO>(person));
+        }
     }
 }
