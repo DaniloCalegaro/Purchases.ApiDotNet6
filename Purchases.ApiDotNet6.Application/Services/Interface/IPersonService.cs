@@ -9,8 +9,10 @@ namespace Purchases.ApiDotNet6.Application.Services.Interface
 {
     public interface IPersonService
     {
-        Task<ResultServices<PersonDTO>> CreateAsync(PersonDTO personDTO);
-        Task<ResultServices<ICollection<PersonDTO>>> GetAsync();
-        Task<ResultServices<PersonDTO>> GetByIdAsync(int id);
+        Task<ResultService<PersonDTO>> CreateAsync(PersonDTO personDTO);
+        Task<ResultService<ICollection<PersonDTO>>> GetAsync();
+        Task<ResultService<PersonDTO>> GetByIdAsync(int id);
+        Task<ResultService> UpdateAsync(PersonDTO personDTO);
+        Task<ResultService> DeleteAsync(int id);
     }
 }

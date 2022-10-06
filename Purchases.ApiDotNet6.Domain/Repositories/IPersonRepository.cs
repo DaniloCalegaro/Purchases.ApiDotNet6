@@ -13,6 +13,6 @@ namespace Purchases.ApiDotNet6.Domain.Repositories
         Task<ICollection<Person>> GetPeopleAsync();
         Task<Person> CreateAsync(Person person);
         Task EditAsync(Person person);
-        Task Delete(Person person);
+        Task DeleteAsync(Person person);
     }
 }

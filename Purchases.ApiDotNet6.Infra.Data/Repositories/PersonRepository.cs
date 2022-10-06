@@ -25,7 +25,7 @@ namespace Purchases.ApiDotNet6.Infra.Data.Repositories
             return person;
         }
 
-        public async Task Delete(Person person)
+        public async Task DeleteAsync(Person person)
         {
             _db.Remove(person);
             await _db.SaveChangesAsync();

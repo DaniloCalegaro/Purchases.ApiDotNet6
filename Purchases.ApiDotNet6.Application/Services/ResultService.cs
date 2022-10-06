@@ -23,9 +23,9 @@ namespace Purchases.ApiDotNet6.Application.Services
             };
         }
 
-        public static ResultServices<T> RequestError<T>(string message, ValidationResult validationResult)
+        public static ResultService<T> RequestError<T>(string message, ValidationResult validationResult)
         {
-            return new ResultServices<T>
+            return new ResultService<T>
             {
                 IsSucess = false,
                 Message = message,
@@ -34,14 +34,14 @@ namespace Purchases.ApiDotNet6.Application.Services
         }
 
         public static ResultService Fail(string message) => new ResultService { IsSucess = false, Message = message };
-        public static ResultServices<T> Fail<T>(string message) => new ResultServices<T> { IsSucess = false, Message = message };
+        public static ResultService<T> Fail<T>(string message) => new ResultService<T> { IsSucess = false, Message = message };
 
         public static ResultService Ok(string message) => new ResultService { IsSucess = true, Message = message };
-        public static ResultServices<T> Ok<T>(T data) => new ResultServices<T> { IsSucess = true, Data = data };
+        public static ResultService<T> Ok<T>(T data) => new ResultService<T> { IsSucess = true, Data = data };
 
     }
 
-    public class ResultServices<T> : ResultService
+    public class ResultService<T> : ResultService
     {
         public T Data { get; set; }
     }
