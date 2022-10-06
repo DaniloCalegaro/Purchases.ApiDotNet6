@@ -79,5 +79,7 @@ namespace Purchases.ApiDotNet6.Application.Services
             await _personRepository.EditAsync(person);
             return ResultService.Ok("Pessoa editada");
         }
+
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Purchases.ApiDotNet6.Application.DTOs;
 using Purchases.ApiDotNet6.Application.Services.Interface;
 
@@ -6,29 +7,29 @@ namespace Purchases.ApiDotNet6.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PersonController : ControllerBase
+    public class ProductController : ControllerBase
     {
-        private readonly IPersonService _personService;
-        public PersonController(IPersonService personService)
+        private readonly IProductService _productService;
+        public ProductController(IProductService productService)
         {
-            _personService = personService;
+            _productService = productService;
         }
 
         [HttpGet]
         public async Task<ActionResult> GetAsync()
         {
-            var result = await _personService.GetAsync();
+            var result = await _productService.GetAsync();
             if (result.IsSucess)
                 return Ok(result);
 
             return BadRequest(result);
         }
-
+        
         [HttpGet]
         [Route("{id}")]
         public async Task<ActionResult> GetByIdAsync(int id)
         {
-            var result = await _personService.GetByIdAsync(id);
+            var result = await _productService.GetByIdAsync(id);
             if (result.IsSucess)
                 return Ok(result);
 
@@ -36,19 +37,19 @@ namespace Purchases.ApiDotNet6.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync([FromBody] PersonDTO personDTO)
+        public async Task<ActionResult> PostAsync([FromBody] ProductDTO productDTO)
         {
-            var result = await _personService.CreateAsync(personDTO);
-            if(result.IsSucess)
+            var result = await _productService.CreateAsync(productDTO);
+            if (result.IsSucess)
                 return Ok(result);
 
             return BadRequest(result);
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateAsync([FromBody] PersonDTO personDTO)
+        public async Task<ActionResult> UpdateAsync([FromBody] ProductDTO productDTO)
         {
-            var result = await _personService.UpdateAsync(personDTO);
+            var result = await _productService.UpdateAsync(productDTO);
             if (result.IsSucess)
                 return Ok(result);
 
@@ -60,7 +61,7 @@ namespace Purchases.ApiDotNet6.Api.Controllers
 
         public async Task<ActionResult> DeleteAsync(int id)
         {
-            var result = await _personService.DeleteAsync(id);
+            var result = await _productService.DeleteAsync(id);
             if (result.IsSucess)
                 return Ok(result);
 

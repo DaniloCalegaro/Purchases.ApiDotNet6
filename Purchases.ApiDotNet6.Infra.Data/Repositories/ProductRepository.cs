@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Purchases.ApiDotNet6.Infra.Data.Repositories
 {
-    internal class ProductRepository : IProductRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly PurchaseDbContext _db;
 
@@ -26,7 +26,7 @@ namespace Purchases.ApiDotNet6.Infra.Data.Repositories
             return product;
         }
 
-        public async Task Delete(Product product)
+        public async Task DeleteAsync(Product product)
         {
             _db.Remove(product);
             await _db.SaveChangesAsync();
