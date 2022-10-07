@@ -28,15 +28,22 @@ namespace Purchases.ApiDotNet6.Domain.Entities
         //construtor edição
         public Purchase(int id, int productId, int personId)
         {
-            DomainValidationException.When(id < 0, "Produto deve ser informado");
+            DomainValidationException.When(id <= 0, "Produto deve ser informado");
+            Id = id;
+            Validation(productId, personId);
+        }
+
+        public void Edit(int id, int productId, int personId)
+        {
+            DomainValidationException.When(id <= 0, "Produto deve ser informado");
             Id = id;
             Validation(productId, personId);
         }
 
         private void Validation(int productId, int personId)
         {
-            DomainValidationException.When(productId < 0, "Produto deve ser informado");
-            DomainValidationException.When(personId < 0, "Pessoas  deve ser informada");
+            DomainValidationException.When(productId <= 0, "Produto deve ser informado");
+            DomainValidationException.When(personId <= 0, "Pessoas  deve ser informada");
 
             ProductId = productId;
             PersonId = personId;

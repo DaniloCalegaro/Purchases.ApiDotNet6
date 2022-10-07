@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿    using Microsoft.EntityFrameworkCore;
 using Purchases.ApiDotNet6.Domain.Entities;
 using Purchases.ApiDotNet6.Domain.Repositories;
 using Purchases.ApiDotNet6.Infra.Data.Context;
@@ -21,7 +21,7 @@ namespace Purchases.ApiDotNet6.Infra.Data.Repositories
 
         public async Task<Product> CreateAsync(Product product)
         {
-            _db.Products.Add(product);
+            _db.Add(product);
             await _db.SaveChangesAsync();
             return product;
         }
@@ -41,6 +41,12 @@ namespace Purchases.ApiDotNet6.Infra.Data.Repositories
         public async Task<Product> GetByIdAsync(int id)
         {
             return await _db.Products.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<int> GetIdByCodErpAsync(string codErp)
+        {
+            return (await _db.Products.FirstOrDefaultAsync(x => x.CodErp == codErp))?.Id ?? 0; 
+            // se existir este coderp retornamos os Id caso contrario retornamos 0
         }
 
         public async Task<ICollection<Product>> GetProductsAsync()

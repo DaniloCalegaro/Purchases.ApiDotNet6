@@ -13,7 +13,7 @@ namespace Purchases.ApiDotNet6.Infra.Data.Maps
     {
         public void Configure(EntityTypeBuilder<Purchase> builder)
         {
-            builder.ToTable("compras");
+            builder.ToTable("compra");
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Id)
@@ -27,6 +27,7 @@ namespace Purchases.ApiDotNet6.Infra.Data.Maps
                 .HasColumnName("idproduto");
 
             builder.Property(c => c.Date)
+                .HasColumnType("date")
                 .HasColumnName("datacompra");
 
             builder.HasOne(c => c.Person)
